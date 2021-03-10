@@ -1,0 +1,14 @@
+server:
+  port: 8085
+spring:
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 2
+    password: GGqX5Xrs9wRlHsBEENueXl56GLpvFU5L
+    url: jdbc:postgresql://ziggy.db.elephantsql.com:5432/accepnyd
+    username: accepnyd
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
