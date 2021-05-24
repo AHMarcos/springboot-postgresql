@@ -1,10 +1,13 @@
 package com.marcosalarcon.backendapirest.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -21,14 +24,25 @@ public class Cliente implements Serializable {
     private String email;
 
     @Column(name = "create_at")
-    @Temporal(TemporalType.DATE)
-    private Date createAt;
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
+    private LocalDateTime createAt;
 
-    @PrePersist
-    public void prePersist(){
-        createAt = new Date();
+    @Column(name = "ip_at")
+    private String ip = InetAddress.getLocalHost().getHostAddress();
+
+
+    public Cliente(String HostName) throws UnknownHostException {
+        this.ip = HostName;
     }
 
-    private static final long serialVersionUID = 1L;
+    public Cliente() throws UnknownHostException {
+
+    }
+
+
+    //    @PrePersist
+//    public void prePersist(){ createAt = new Date(); }
+
+//    private static final long serialVersionUID = 1L;
 
 }

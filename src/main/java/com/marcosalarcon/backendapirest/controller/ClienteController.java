@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class ClienteController {
     @PostMapping("/cliente")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){
+        cliente.setCreateAt(LocalDateTime.now());
+        cliente.setIp(cliente.getIp());
         return service.save(cliente);
     }
 
